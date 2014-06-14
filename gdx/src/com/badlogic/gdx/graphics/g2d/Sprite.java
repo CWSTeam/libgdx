@@ -23,6 +23,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.NumberUtils;
+import com.badlogic.gdx.math.Vector2;
 
 /** Holds the geometry, color, and texture information for drawing 2D sprites using {@link Batch}. A Sprite has a position and a
  * size given as width and height. The position is relative to the origin of the coordinate system specified via
@@ -187,6 +188,10 @@ public class Sprite extends TextureRegion {
 	public void setPosition (float x, float y) {
 		translate(x - this.x, y - this.y);
 	}
+	
+	public void setPosition (Vector2 position) {
+		translate(position.x - this.x, position.y - this.y);
+	}
 
 	/** Sets the x position where the sprite will be drawn. If origin, rotation, or scale are changed, it is slightly more efficient
 	 * to set the position after those operations. If both position and size are to be changed, it is better to use
@@ -216,6 +221,11 @@ public class Sprite extends TextureRegion {
 	public void setCenter(float x, float y){
 		setCenterX(x);
 		setCenterY(y);
+	}
+	
+	public void setCenter(Vector2 position) {
+		setCenterX(position.x);
+		setCenterY(position.y);
 	}
 
 	/** Sets the x position relative to the current position where the sprite will be drawn. If origin, rotation, or scale are
@@ -321,6 +331,12 @@ public class Sprite extends TextureRegion {
 		this.originY = originY;
 		dirty = true;
 	}
+	
+	public void setOrigin (Vector2 position) {
+		this.originX = position.x;
+		this.originY = position.y;
+		dirty = true;
+	}
 
 	/** Place origin in the center of the sprite */
 	public void setOriginCenter() {
@@ -393,6 +409,12 @@ public class Sprite extends TextureRegion {
 	public void setScale (float scaleX, float scaleY) {
 		this.scaleX = scaleX;
 		this.scaleY = scaleY;
+		dirty = true;
+	}
+	
+	public void setScale (Vector2 position) {
+		this.scaleX = position.x;
+		this.scaleY = position.y;
 		dirty = true;
 	}
 
